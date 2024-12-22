@@ -41,7 +41,8 @@ public class AgentMovement : MonoBehaviour
             if(Physics.Raycast(ray,out RaycastHit rayHit,Mathf.Infinity, layerMask))
             {
                 agent.SetDestination(rayHit.point);
-                animator.SetTrigger("Play_Running");
+                animator.SetBool("playRunning", true);
+                animator.SetBool("playIdle", false);
                 reached = false;
                 agent.isStopped = false;
             }
@@ -54,7 +55,8 @@ public class AgentMovement : MonoBehaviour
         {
             reached = true;
             agent.isStopped = true;
-            animator.SetTrigger("Play_Idle");
+            animator.SetBool("playRunning", false);
+            animator.SetBool("playIdle", true);
         }
     }
 
