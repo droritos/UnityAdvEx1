@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
             Coin coinColided = other.GetComponent<Coin>();
             if (coinColided != null) // For safty
             {
-                OnCoinCollected?.Invoke(coinColided.CoinValue);
+                //OnCoinCollected?.Invoke(coinColided.CoinValue);
             }
         }
     }
