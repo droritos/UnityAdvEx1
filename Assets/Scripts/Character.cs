@@ -8,15 +8,16 @@ public class Character : MonoBehaviour
     [SerializeField] Collider myCollider;
 
     [SerializeField] int _coinsGathered = 0;
-    private void Start()
+
+    private void OnTriggerEnter(Collider other)
     {
-        Coin.OnTriggerEnterAction += CoinCollided;
-    }
-    private void CoinCollided(Coin coin)
-    {
-        coin.SetGFX(false);
-        _coinsGathered++;
-        OnCoinCollected.Invoke(_coinsGathered);
-        print($"Character Collide With {coin.gameObject.name}");
+        if (other.CompareTag("Coin"))
+        {
+            Coin coinColided = other.GetComponent<Coin>();
+            if (coinColided != null) // For safty
+            {
+                OnCoinCollected?.Invoke(coinColided.CoinValue);
+            }
+        }
     }
 }

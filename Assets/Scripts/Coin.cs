@@ -3,16 +3,20 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    public  UnityEvent OnTriggerEnterEvent;
-    public static event UnityAction<Coin> OnTriggerEnterAction; // Bonus transfer this.class parameter
+    //public event UnityAction<Coin> OnTriggerEnterAction; // Bonus transfer this.class parameter
+    public UnityEvent OnTriggerEnterEvent;
 
     [SerializeField] GameObject coinGFX;
 
+    public int CoinValue = 1;
+
     private void OnTriggerEnter(Collider other)
     {
-        //print($"Enter {other.gameObject.name}");
-        OnTriggerEnterAction?.Invoke(this);
-        OnTriggerEnterEvent.Invoke();
+        if (other.CompareTag("Player"))
+        {
+            SetGFX(false);
+            OnTriggerEnterEvent?.Invoke();
+        }
     }
 
     public void SetGFX(bool state)

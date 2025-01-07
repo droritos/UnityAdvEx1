@@ -118,6 +118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7001504563679271817}
+  - {fileID: 4475396803808052232}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1481355300523066200
@@ -156,16 +157,88 @@ MonoBehaviour:
   OnTriggerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 302511484350571081, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 3785491145384912520}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   coinGFX: {fileID: 3490013991694640704}
+  CoinValue: 1
+--- !u!1001 &8965205854969463508
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7795781122704402835}
+    m_Modifications:
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251772323353650268, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_Name
+      value: CoinGathered
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251772323353650268, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+--- !u!1 &3785491145384912520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5251772323353650268, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+  m_PrefabInstance: {fileID: 8965205854969463508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4475396803808052232 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4787610730131146460, guid: 874bbc2763a7015478bea923d9eb8c6c, type: 3}
+  m_PrefabInstance: {fileID: 8965205854969463508}
+  m_PrefabAsset: {fileID: 0}

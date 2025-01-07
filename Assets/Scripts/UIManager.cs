@@ -10,13 +10,14 @@ public class UIManager : MonoBehaviour
     private int coins = 0;
     void Start()
     {
-        UpdateCoinBalance(coins); // First, initialize the coin balance
+        coinCollectedText.SetText("0");
+        //UpdateCoinBalance(coins); // First, initialize the coin balance
         elfCharacter.OnCoinCollected += UpdateCoinBalance;
     }
 
-    private void UpdateCoinBalance(int totalCoins)
+    private void UpdateCoinBalance(int coinValue)
     {
-        coins = totalCoins;
-        coinCollectedText.text = coins.ToString();
+        coins += coinValue;
+        coinCollectedText.SetText(coins.ToString());
     }
 }
