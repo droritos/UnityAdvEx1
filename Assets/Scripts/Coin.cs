@@ -3,19 +3,24 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    //public event UnityAction<Coin> OnTriggerEnterAction; // Bonus transfer this.class parameter
-    public UnityEvent OnTriggerEnterEvent;
+    private UnityEvent<int> OnTriggerEnterEvent;
+    public event UnityAction<int> IncreseSpeedActionEvent;
+    public int CoinValue = 1;
+
+    private int _speed = 1;
 
     [SerializeField] GameObject coinGFX;
 
-    public int CoinValue = 1;
-
+    private void Start()
+    {
+        //OnTriggerEnterEvent?.AddListener(IncreseSpeedActionEvent);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             SetGFX(false);
-            OnTriggerEnterEvent?.Invoke();
+            OnTriggerEnterEvent?.Invoke(_speed);
         }
     }
 

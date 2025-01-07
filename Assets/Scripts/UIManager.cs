@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class UIManager : MonoBehaviour
     [Header("References")]
     [SerializeField] Character elfCharacter;
     [SerializeField] TextMeshProUGUI coinCollectedText;
+    [SerializeField] GameObject bushOverlay;
 
     private int coins = 0;
     void Start()
@@ -13,11 +15,17 @@ public class UIManager : MonoBehaviour
         coinCollectedText.SetText("0");
         //UpdateCoinBalance(coins); // First, initialize the coin balance
         elfCharacter.OnCoinCollected += UpdateCoinBalance;
+        elfCharacter.OnBushEnterEvent.AddListener(BushFog);
     }
 
-    private void UpdateCoinBalance(int coinValue)
+    private void UpdateCoinBalance(Coin coin)
     {
-        coins += coinValue;
+        coins += coin.CoinValue;
         coinCollectedText.SetText(coins.ToString());
+    }
+
+    private void BushFog(bool state)
+    {
+        bushOverlay.gameObject.SetActive(state);
     }
 }
