@@ -10,26 +10,27 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinCollectedText;
     [SerializeField] TextMeshProUGUI destinationText;
 
+    [SerializeField] GameObject bushOverlay;
+
     private int coins = 0;
     void Start()
     {
         elfMovement.OnAgentReachDestinationActionEvent += ShowDestenationText;
-        //coinCollectedText.SetText("0");
-        //UpdateCoinBalance(coins); // First, initialize the coin balance
+        coinCollectedText.SetText("0");
         elfCharacter.OnCoinCollected += UpdateCoinBalance;
         elfCharacter.OnBushEnterEvent.AddListener(BushFog);
-        //elfCharacter.OnCoinCollected += UpdateCoinBalance;
     }
 
     private void UpdateCoinBalance(Coin coin)
     {
-        coins += coin.CoinValue;
+        coins += coin.info.coinValue;
         coinCollectedText.SetText(coins.ToString());
     }
 
     private void BushFog(bool state)
     {
         bushOverlay.gameObject.SetActive(state);
+    }
     private void ShowDestenationText()
     {
         if (destinationText != null)

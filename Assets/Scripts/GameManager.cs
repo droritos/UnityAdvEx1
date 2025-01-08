@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
     //Coin Spawn Variables
     [SerializeField] private CoinsGenerator coinsGenerator;
     [SerializeField] private int amount;
-    [SerializeField] private Vector3 rangeMin = new Vector3(-10, 0, -10);
-    [SerializeField] private Vector3 rangeMax = new Vector3(10, 0, 10);
+    [SerializeField] private Vector3 rangeMin = new Vector3(-25, 1.5f, -25);
+    [SerializeField] private Vector3 rangeMax = new Vector3(25, 1.5f, 25);
     [SerializeField] private float objectRadius = 1f;
 
     private List<Vector3> spawnedPositions = new List<Vector3>();
