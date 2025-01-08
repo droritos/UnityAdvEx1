@@ -7,18 +7,20 @@ public class CoinsGenerator : ScriptableObject
 {
     [SerializeField] List<Coin> coins = new List<Coin>();
 
-    public Coin GenerateCoin() //generates a random coin based on the probability that was given by the player
+    public Coin GenerateCoin() //generates a random coin based on the probability that was given by the player in a range from 1-100
     {
-        List<Coin> coinsTemp = new List<Coin>();
+        float chance = 0;
+        Coin selected = coins[0];
         foreach (Coin coin in coins)
         {
-            for(int i = 0; coin.info.probability  > i; i++)
+            float chanceNew = Random.Range(coin.info.probability, 100);
+            if (chance < chanceNew)
             {
-                coinsTemp.Add(coin);
-            }
+                selected = coin;
+                chance = chanceNew;
+            } 
         }
-        int selected = Random.Range(0, coinsTemp.Count - 1);
-        return coinsTemp[selected];
+        return selected;
     }
 
     public Coin GenerateCoin(CoinsInfo.CoinSize size) //generate coin by enum definition
