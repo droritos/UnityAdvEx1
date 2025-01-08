@@ -5506,6 +5506,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d21a7f741a2dd8641a6d250e27552853, type: 3}
   m_PrefabInstance: {fileID: 226881264}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &167228614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167228615}
+  - component: {fileID: 167228617}
+  m_Layer: 0
+  m_Name: UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167228615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167228614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.494055, y: 1.5000001, z: -16.145992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &167228617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167228614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd21795f74967f74f89b60b5c9a54707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elfCharacter: {fileID: 0}
+  elfMovement: {fileID: 1357823980}
+  coinCollectedText: {fileID: 0}
+  destinationText: {fileID: 108818684}
 --- !u!4 &167244373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d21a7f741a2dd8641a6d250e27552853, type: 3}
@@ -12046,7 +12094,7 @@ GameObject:
   - component: {fileID: 418156931}
   m_Layer: 0
   m_Name: Final_Location
-  m_TagString: Untagged
+  m_TagString: Final
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15012,8 +15060,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 527385267}
-  finalDestination: {fileID: 418156926}
-  text: {fileID: 1169073444}
   animator: {fileID: 527385269}
   camera: {fileID: 963194227}
   layerMask:
@@ -19395,6 +19441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Human
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bef0d3248e707fc4b9071c10c0eae809, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: bef0d3248e707fc4b9071c10c0eae809, type: 3}
       propertyPath: m_Controller
       value: 
@@ -22943,7 +22993,7 @@ PrefabInstance:
       addedObject: {fileID: 1357823974}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b2d545edb8a6ae4a81b1cab6c95d701, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1357823975}
+      addedObject: {fileID: 1357823980}
   m_SourcePrefab: {fileID: 100100000, guid: 2b2d545edb8a6ae4a81b1cab6c95d701, type: 3}
 --- !u!1001 &789297552
 PrefabInstance:
@@ -39460,26 +39510,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5113822, y: 1.7096394, z: 0.34934044}
   m_Center: {x: -0.023626499, y: 0.85718, z: -0.00024999632}
---- !u!114 &1357823975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357823973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f66219d5426234f97f0a135bf92af2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1357823976}
-  finalDestination: {fileID: 418156926}
-  text: {fileID: 108818684}
-  animator: {fileID: 1357823979}
-  camera: {fileID: 963194227}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!195 &1357823976
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -39512,6 +39542,24 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2b2d545edb8a6ae4a81b1cab6c95d701, type: 3}
   m_PrefabInstance: {fileID: 789058803}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357823980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357823973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f66219d5426234f97f0a135bf92af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1357823976}
+  animator: {fileID: 1357823979}
+  camera: {fileID: 963194227}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &1359636552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68069,6 +68117,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 38176526}
+  - {fileID: 167228615}
   - {fileID: 539513548}
   - {fileID: 705507995}
   - {fileID: 789058803}

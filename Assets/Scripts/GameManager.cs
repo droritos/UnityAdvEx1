@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Coin Spawn Variables
     [SerializeField] private CoinsGenerator coinsGenerator;
     [SerializeField] private int amount;
     [SerializeField] private Vector3 rangeMin = new Vector3(-10, 0, -10);
