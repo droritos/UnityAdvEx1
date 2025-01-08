@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
@@ -15,15 +16,20 @@ public class UIManager : MonoBehaviour
         elfMovement.OnAgentReachDestinationActionEvent += ShowDestenationText;
         //coinCollectedText.SetText("0");
         //UpdateCoinBalance(coins); // First, initialize the coin balance
+        elfCharacter.OnCoinCollected += UpdateCoinBalance;
+        elfCharacter.OnBushEnterEvent.AddListener(BushFog);
         //elfCharacter.OnCoinCollected += UpdateCoinBalance;
     }
 
-    private void UpdateCoinBalance(int coinValue)
+    private void UpdateCoinBalance(Coin coin)
     {
-        coins += coinValue;
+        coins += coin.CoinValue;
         coinCollectedText.SetText(coins.ToString());
     }
 
+    private void BushFog(bool state)
+    {
+        bushOverlay.gameObject.SetActive(state);
     private void ShowDestenationText()
     {
         if (destinationText != null)

@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SetGFX(false);
-            OnTriggerEnterEvent?.Invoke();
+            OnTriggerEnterEvent?.Invoke(_speed);
         }
     }
 
