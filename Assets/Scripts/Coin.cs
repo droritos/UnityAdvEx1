@@ -3,17 +3,16 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    private UnityEvent<int> OnTriggerEnterEvent;
-    public event UnityAction<int> IncreseSpeedActionEvent;
-    public int CoinValue = 1;
 
-    private int _speed = 1;
+    //public event UnityAction<Coin> OnTriggerEnterAction; // Bonus transfer this.class parameter
+    public UnityEvent OnTriggerEnterEvent;
 
-    [SerializeField] GameObject coinGFX;
+    [SerializeField] public CoinsInfo info; //The value of the coin is here, Second scriptable object to link the values of the coins
+    [SerializeField] private GameObject coinGFX;
 
     private void Start()
     {
-        //OnTriggerEnterEvent?.AddListener(IncreseSpeedActionEvent);
+        transform.localScale = new Vector3(1, info.sizeMultiplier, info.sizeMultiplier); //Make them largerrr
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -27,5 +26,10 @@ public class Coin : MonoBehaviour
     public void SetGFX(bool state)
     {
         coinGFX.SetActive(state);
+    }
+
+    public int GetValue()
+    {
+        return info.coinValue;
     }
 }

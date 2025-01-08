@@ -3,12 +3,13 @@ using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class AgentMovement : MonoBehaviour
 {
+    public event UnityAction OnAgentReachDestinationActionEvent;
+
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private GameObject finalDestination;
-    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Animator animator;
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask layerMask;
@@ -29,8 +30,10 @@ public class AgentMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == finalDestination)
-            TextShow();
+        if (other.CompareTag("Final"))
+        {
+            OnAgentReachDestinationActionEvent?.Invoke();
+        }
     }
 
     public void Clicked()
@@ -69,14 +72,6 @@ public class AgentMovement : MonoBehaviour
         else if (agent != null && agent.agentTypeID == 0) // ID 0 = Human
         {
             agent.SetAreaCost(6,6);
-        }
-    }
-
-    public void TextShow()
-    {
-        if (text != null)
-        {
-            text.enabled = true;
         }
     }
 }
