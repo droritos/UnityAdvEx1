@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b32da4a8ac5174dbd196facb242437, type: 3}
   m_Name: CoinsInfoSmall
   m_EditorClassIdentifier: 
+  probability: 50
+  coinSize: 0
   coinValue: 1
+  sizeMultiplier: 1
