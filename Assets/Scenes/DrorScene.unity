@@ -68766,7 +68766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3845911089010158915, guid: 44e39a1cd65acfe468d610746623ac64, type: 3}
       propertyPath: OnBushEnterEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3845911089010158915, guid: 44e39a1cd65acfe468d610746623ac64, type: 3}
       propertyPath: OnBushEnterEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -68786,7 +68786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3845911089010158915, guid: 44e39a1cd65acfe468d610746623ac64, type: 3}
       propertyPath: OnBushEnterEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3845911089010158915, guid: 44e39a1cd65acfe468d610746623ac64, type: 3}
       propertyPath: OnBushEnterEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
