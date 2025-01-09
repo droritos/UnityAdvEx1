@@ -1,26 +1,34 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static Character;
 
 public class GameManager : MonoBehaviour
 {
     //Coin Spawn Variables
-    [SerializeField] private CoinsGenerator coinsGenerator;
+    [Header("References")]
+    [SerializeField] UIManager uiManager;
+    [SerializeField] Character elfCharacter;
+    [SerializeField] CoinsGenerator coinsGenerator;
+
+    [Header("Game Manager Data")]
     [SerializeField] private int amount;
     [SerializeField] private Vector3 rangeMin = new Vector3(-25, 1.5f, -25);
     [SerializeField] private Vector3 rangeMax = new Vector3(25, 1.5f, 25);
     [SerializeField] private float objectRadius = 1f;
 
-    private List<Vector3> spawnedPositions = new List<Vector3>();
+
+    private List<Vector3> _spawnedPositions = new List<Vector3>();
 
     private void Start()
     {
+        uiManager.DecreaseSpeed += HandleAgentSpeed;
+        elfCharacter.OnCoinCollected += AmountChecker;
         SpawnObjects();
     }
 
     private void SpawnObjects()
     {
         int spawnedCount = 0;
-
         while (spawnedCount < amount)
         {
             // Generate a random position within the range
@@ -34,7 +42,7 @@ public class GameManager : MonoBehaviour
             if (IsPositionValid(randomPosition))
             {
                 Instantiate(coinsGenerator.GenerateCoin(), randomPosition, Quaternion.identity);
-                spawnedPositions.Add(randomPosition);
+                _spawnedPositions.Add(randomPosition);
                 spawnedCount++;
             }
         }
@@ -47,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private bool IsPositionValid(Vector3 position)
     {
-        foreach (Vector3 spawnedPosition in spawnedPositions)
+        foreach (Vector3 spawnedPosition in _spawnedPositions)
         {
             if (Vector3.Distance(position, spawnedPosition) < objectRadius * 2)
             {
@@ -56,5 +64,25 @@ public class GameManager : MonoBehaviour
         }
 
         return true; // Valid position
+    }
+
+    private void AmountChecker(InformationSend sent)
+    {
+        if (amount == sent.CollectedAmount)
+        {
+            uiManager.SetCollectedText(true);
+        }
+    }
+
+    private void HandleAgentSpeed(float newSpeed, AgentMovement agentMovement)
+    {
+        if (newSpeed != 1)
+        {
+            agentMovement.Agent.speed *= newSpeed;
+        }
+        else
+        {
+            agentMovement.ResetSpeed();
+        }
     }
 }
