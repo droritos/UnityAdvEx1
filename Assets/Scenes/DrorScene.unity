@@ -50295,7 +50295,7 @@ MonoBehaviour:
   uiManager: {fileID: 1929655976}
   elfCharacter: {fileID: 1357823981}
   coinsGenerator: {fileID: 11400000, guid: 3270cd4e37fb8734e8af8cb198b0696b, type: 2}
-  amount: 1
+  amount: 20
   rangeMin: {x: -25, y: 1.5, z: -25}
   rangeMax: {x: 25, y: 1.5, z: 25}
   objectRadius: 1
@@ -60905,13 +60905,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bushOverlay: {fileID: 751691056}
+  finishObject: {fileID: 1638322099}
   finishCollider: {fileID: 418156927}
   elfCharacter: {fileID: 1357823981}
   elfMovement: {fileID: 1985811836}
   finishObjectText: {fileID: 1475144175}
   finishCollectedText: {fileID: 408525066}
   coinCollectedText: {fileID: 65814665}
-  finishObject: {fileID: 1638322099}
   delayTime: 2.5
 --- !u!1001 &1929741279
 PrefabInstance:
