@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void AmountChecker(InformationSend sent)
     {
+        // Check when you collect all coins
         if (amount == sent.CollectedAmount)
         {
             uiManager.SetCollectedText(true);
@@ -78,10 +79,12 @@ public class GameManager : MonoBehaviour
     {
         if (newSpeed != 1)
         {
+            // When in a surfaces
             agentMovement.Agent.speed *= newSpeed;
         }
         else
         {
+            // when you out of any surfaces
             agentMovement.ResetSpeed();
         }
     }

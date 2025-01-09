@@ -7,10 +7,8 @@ public class Character : MonoBehaviour
     public event UnityAction<InformationSend> OnCoinCollected;
     public UnityEvent<SurfaceType> OnEventSurfaceEnterEvent;
     public UnityEvent OnEventSurfaceExitEvent;
-    public event UnityAction<bool> OnSurfaceEnterEventAction;
 
     [SerializeField] Collider myCollider;
-    [SerializeField] int _coinsGathered = 0;
     [SerializeField] ParticleSystem particalEffect;
 
     private int _coinsCounter = 0;

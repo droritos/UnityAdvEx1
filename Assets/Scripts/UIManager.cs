@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] GameObject bushOverlay;
+    [SerializeField] GameObject finishObject;
     [SerializeField] BoxCollider finishCollider;
 
     [Header("Main Player")]
@@ -21,7 +22,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI finishObjectText;
     [SerializeField] TextMeshProUGUI finishCollectedText;
     [SerializeField] TextMeshProUGUI coinCollectedText;
-    [SerializeField] TextMeshProUGUI destinationText;
 
     [SerializeField] float delayTime = 1.5f;
 
@@ -34,7 +34,11 @@ public class UIManager : MonoBehaviour
         elfCharacter.OnEventSurfaceEnterEvent.AddListener(HandleFogEnter);
         elfCharacter.OnEventSurfaceExitEvent.AddListener(HandleFogExit);
     }
-
+    public void QuitGameButton()
+    {
+        Application.Quit();
+        Debug.Log("Exitign Game");
+    }
     public void SetCollectedText(bool state)
     {
         finishObjectText.gameObject.SetActive(state);
@@ -65,9 +69,9 @@ public class UIManager : MonoBehaviour
 
     private void ShowDestenationText()
     {
-        if (destinationText != null)
+        if (finishObject != null)
         {
-            destinationText.enabled = true;
+            finishObject.SetActive(true);
         }
     }
 

@@ -14,15 +14,13 @@ public class AgentMovement : MonoBehaviour
     private float _originalSpeed;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera camera; // Can be deleted
     [SerializeField] private LayerMask layerMask;
     private bool reached = true;
 
 
     void Start()
     {
-
-        //OnEventSurfaceEnterEvent.AddListener(HandleSpeed);
         _originalSpeed = agent.speed;
         SetAreasCosts();
     }
