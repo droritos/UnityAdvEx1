@@ -1,40 +1,66 @@
+using Unity.Multiplayer.Center.Common;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
-    public event UnityAction<Coin> OnCoinCollected;
-    public UnityEvent<bool> OnBushEnterEvent;
-    public event UnityAction<bool> OnBushEnterEventAction;
+    public event UnityAction<InformationSend> OnCoinCollected;
+    public UnityEvent<SurfaceType> OnEventSurfaceEnterEvent;
+    public UnityEvent OnEventSurfaceExitEvent;
+    public event UnityAction<bool> OnSurfaceEnterEventAction;
 
     [SerializeField] Collider myCollider;
     [SerializeField] int _coinsGathered = 0;
-    [SerializeField] ParticleSystem bushEffect;
+    [SerializeField] ParticleSystem particalEffect;
+
+    private int _coinsCounter = 0;
 
     private void OnTriggerEnter(Collider other)
     {
+        string otherTag = other.tag;
         if (other.CompareTag("Coin"))
         {
             Coin coinColided = other.GetComponent<Coin>();
             if (coinColided != null) // For safty
             {
-                //OnCoinCollected?.Invoke(coinColided.CoinValue);
+                _coinsCounter++;
+                InformationSend send = new InformationSend(coinColided,_coinsCounter);
+                OnCoinCollected?.Invoke(send);
             }
         }
-        if (other.CompareTag("Bush"))
+        else if (other.CompareTag("Surfaces"))
         {
-            Bush bushColided = other.GetComponent<Bush>();
-            OnBushEnterEvent.Invoke(true);
-            //OnBushEnterEventAction.Invoke(true);
+            SurfaceType surfaceType = other.GetComponent<SurfaceType>();
+            SetEffectColor(surfaceType.ColorEffect);
+            //SetEffect(surfaceType.effect);
+            OnEventSurfaceEnterEvent.Invoke(surfaceType);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Bush"))
+        if (other.CompareTag("Surfaces"))
         {
-            Bush bushColided = other.GetComponent<Bush>();
-            OnBushEnterEvent.Invoke(false);
+            OnEventSurfaceExitEvent.Invoke();
         }
     }
+
+    private void SetEffectColor(Color color)
+    {
+        var mainModule = particalEffect.main; // Access the Main Module
+        mainModule.startColor = color; // Set the start color    }
+    }
+
+    public struct InformationSend 
+    {
+        public Coin Coin;
+        public int CollectedAmount;
+
+        public InformationSend(Coin coin, int counter)
+        {
+            this.Coin = coin;
+            this.CollectedAmount = counter;
+        }
+    };
 }
+

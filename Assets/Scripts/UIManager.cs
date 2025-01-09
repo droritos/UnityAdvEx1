@@ -1,41 +1,82 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using static Character;
+using System.Collections;
+
 
 public class UIManager : MonoBehaviour
 {
+    public event UnityAction<float , AgentMovement> DecreaseSpeed;
+
     [Header("References")]
+    [SerializeField] GameObject bushOverlay;
+    [SerializeField] BoxCollider finishCollider;
+
+    [Header("Main Player")]
     [SerializeField] Character elfCharacter;
     [SerializeField] AgentMovement elfMovement;
+
+    [Header("Texts")]
+    [SerializeField] TextMeshProUGUI finishObjectText;
+    [SerializeField] TextMeshProUGUI finishCollectedText;
     [SerializeField] TextMeshProUGUI coinCollectedText;
     [SerializeField] TextMeshProUGUI destinationText;
+
+    [SerializeField] float delayTime = 1.5f;
 
     private int coins = 0;
     void Start()
     {
         elfMovement.OnAgentReachDestinationActionEvent += ShowDestenationText;
-        //coinCollectedText.SetText("0");
-        //UpdateCoinBalance(coins); // First, initialize the coin balance
+        coinCollectedText.SetText("0");
         elfCharacter.OnCoinCollected += UpdateCoinBalance;
-        elfCharacter.OnBushEnterEvent.AddListener(BushFog);
-        //elfCharacter.OnCoinCollected += UpdateCoinBalance;
+        elfCharacter.OnEventSurfaceEnterEvent.AddListener(HandleFogEnter);
+        elfCharacter.OnEventSurfaceExitEvent.AddListener(HandleFogExit);
     }
 
-    private void UpdateCoinBalance(Coin coin)
+    public void SetCollectedText(bool state)
     {
-        coins += coin.CoinValue;
+        finishObjectText.gameObject.SetActive(state);
+        finishCollider.enabled = state;
+        StartCoroutine(ClearTextAfterDelay());
+    }
+
+    private void UpdateCoinBalance(InformationSend sent)
+    {
+        coins += sent.Coin.info.coinValue;
         coinCollectedText.SetText(coins.ToString());
     }
 
-    private void BushFog(bool state)
+    private void HandleFogEnter(SurfaceType surface)
     {
-        bushOverlay.gameObject.SetActive(state);
+        if (surface.MyType == SurfaceKind.Bush)
+        {
+            bushOverlay.gameObject.SetActive(true);
+        }
+        DecreaseSpeed.Invoke(surface.SpeedModifier, elfMovement);
+    }
+    private void HandleFogExit()
+    {
+        bushOverlay.gameObject.SetActive(false);
+        DecreaseSpeed.Invoke(1, elfMovement);
+    }
+
+
     private void ShowDestenationText()
     {
         if (destinationText != null)
         {
             destinationText.enabled = true;
-            Debug.Log("yes");
         }
     }
+
+     private IEnumerator ClearTextAfterDelay()
+    {
+        finishCollectedText.enabled = true;
+        yield return new WaitForSeconds(delayTime); // Wait for the specified time
+        finishCollectedText.enabled = false;
+    }
+
+    
 }

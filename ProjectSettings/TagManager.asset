@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Coin
-  - Bush
   - Final
+  - Bush
+  - Surfaces
   layers:
   - Default
   - TransparentFX

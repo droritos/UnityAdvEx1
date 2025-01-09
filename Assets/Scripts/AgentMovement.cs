@@ -7,23 +7,29 @@ using UnityEngine.Events;
 
 public class AgentMovement : MonoBehaviour
 {
-    public event UnityAction OnAgentReachDestinationActionEvent;
+    public event UnityAction OnAgentReachDestinationActionEvent; // Also getting the passed time
 
     [SerializeField] private NavMeshAgent agent;
+    public NavMeshAgent Agent { get { return agent; } }
+    private float _originalSpeed;
+
     [SerializeField] private Animator animator;
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask layerMask;
     private bool reached = true;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+
+        //OnEventSurfaceEnterEvent.AddListener(HandleSpeed);
+        _originalSpeed = agent.speed;
         SetAreasCosts();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        
         Clicked();
         HasArrived();
     }
@@ -73,5 +79,10 @@ public class AgentMovement : MonoBehaviour
         {
             agent.SetAreaCost(6,6);
         }
+    }
+
+    public void ResetSpeed()
+    {
+        agent.speed = _originalSpeed;
     }
 }
