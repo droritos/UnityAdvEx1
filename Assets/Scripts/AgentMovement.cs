@@ -7,34 +7,31 @@ using UnityEngine.Events;
 
 public class AgentMovement : MonoBehaviour
 {
-    public event UnityAction OnAgentReachDestinationActionEvent; // Also getting the passed time
+    public event UnityAction OnAgentReachDestinationActionEvent; //Informs that the player has reached the final destination
 
     [SerializeField] private NavMeshAgent agent;
-    public NavMeshAgent Agent { get { return agent; } }
-    private float _originalSpeed;
-
     [SerializeField] private Animator animator;
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask layerMask;
+    
+    public NavMeshAgent Agent { get { return agent; } }
+    private float _originalSpeed;
     private bool reached = true;
 
 
     void Start()
     {
-
-        //OnEventSurfaceEnterEvent.AddListener(HandleSpeed);
         _originalSpeed = agent.speed;
         SetAreasCosts();
     }
 
     void Update()
     {
-        
         Clicked();
         HasArrived();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //When the player reaches final, invoke this event
     {
         if (other.CompareTag("Final"))
         {
@@ -81,7 +78,7 @@ public class AgentMovement : MonoBehaviour
         }
     }
 
-    public void ResetSpeed()
+    public void ResetSpeed() //To return to the previouse state of speed after leaving a special surface
     {
         agent.speed = _originalSpeed;
     }

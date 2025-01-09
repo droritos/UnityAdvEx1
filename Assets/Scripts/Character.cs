@@ -7,37 +7,33 @@ public class Character : MonoBehaviour
     public event UnityAction<InformationSend> OnCoinCollected;
     public UnityEvent<SurfaceType> OnEventSurfaceEnterEvent;
     public UnityEvent OnEventSurfaceExitEvent;
-    public event UnityAction<bool> OnSurfaceEnterEventAction;
 
-    [SerializeField] Collider myCollider;
-    [SerializeField] int _coinsGathered = 0;
-    [SerializeField] ParticleSystem particalEffect;
+    [SerializeField] private Collider myCollider;
+    [SerializeField] private ParticleSystem particleEffect;
 
-    private int _coinsCounter = 0;
+    private int _coinsCounter;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //Trigger check on if the player entered a coin or a surface to handle invocations
     {
-        string otherTag = other.tag;
         if (other.CompareTag("Coin"))
         {
-            Coin coinColided = other.GetComponent<Coin>();
-            if (coinColided != null) // For safty
+            Coin coinColided = other.GetComponent<Coin>(); //Coin trigger
+            if (coinColided != null)
             {
                 _coinsCounter++;
                 InformationSend send = new InformationSend(coinColided,_coinsCounter);
                 OnCoinCollected?.Invoke(send);
             }
         }
-        else if (other.CompareTag("Surfaces"))
+        else if (other.CompareTag("Surfaces")) //Surface trigger
         {
             SurfaceType surfaceType = other.GetComponent<SurfaceType>();
             SetEffectColor(surfaceType.ColorEffect);
-            //SetEffect(surfaceType.effect);
             OnEventSurfaceEnterEvent.Invoke(surfaceType);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) //Informs that the player has left the surface
     {
         if (other.CompareTag("Surfaces"))
         {
@@ -45,13 +41,13 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void SetEffectColor(Color color)
+    private void SetEffectColor(Color color) //Determine which color to put in the particle effect based on the surface type
     {
-        var mainModule = particalEffect.main; // Access the Main Module
-        mainModule.startColor = color; // Set the start color    }
+        var mainModule = particleEffect.main; // Access the Main Module
+        mainModule.startColor = color; // Set the start color    
     }
 
-    public struct InformationSend 
+    public struct InformationSend //Sending information to the events through a struct (Bonus)
     {
         public Coin Coin;
         public int CollectedAmount;

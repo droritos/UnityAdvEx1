@@ -3,8 +3,6 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-
-    //public event UnityAction<Coin> OnTriggerEnterAction; // Bonus transfer this.class parameter
     public UnityEvent OnTriggerEnterEvent;
 
     [SerializeField] public CoinsInfo info; //The value of the coin is here, Second scriptable object to link the values of the coins
@@ -12,9 +10,9 @@ public class Coin : MonoBehaviour
 
     private void Start()
     {
-        transform.localScale = new Vector3(1, info.sizeMultiplier, info.sizeMultiplier); //Make them largerrr
+        transform.localScale = new Vector3(1, info.sizeMultiplier, info.sizeMultiplier); //Make them larger through the multiplier in the coinInfo scriptable object
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //Invokes the inspector event and does a particle effect
     {
         if (other.CompareTag("Player"))
         {
@@ -23,13 +21,8 @@ public class Coin : MonoBehaviour
         }
     }
 
-    public void SetGFX(bool state)
+    public void SetGFX(bool state) //Particle effect handling
     {
         coinGFX.SetActive(state);
-    }
-
-    public int GetValue()
-    {
-        return info.coinValue;
     }
 }
