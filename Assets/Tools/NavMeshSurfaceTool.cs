@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using Unity.AI.Navigation;
 using UnityEditor;
 using UnityEngine;
@@ -92,3 +93,4 @@ public class NavMeshSurfaceTool : EditorWindow
         Debug.Log("Baked all NavMesh surfaces.");
     }
 }
+#endif
